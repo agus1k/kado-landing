@@ -32,7 +32,7 @@ export const Header = () => {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img src="/src/assets/logo.png" alt="Kado Logo" className="h-8 w-auto" />
+          <img src="/logo.png" alt="Kado Logo" className="h-8 w-auto" />
 
         </div>
 
