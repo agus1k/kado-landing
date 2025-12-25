@@ -7,6 +7,7 @@ export const Features = () => {
   const [isAnalyticsHovered, setIsAnalyticsHovered] = useState(false);
   const [isResponsiveHovered, setIsResponsiveHovered] = useState(false);
   const [isStylesHovered, setIsStylesHovered] = useState(false);
+  const [isDomainsHovered, setIsDomainsHovered] = useState(false);
 
   const styleColors = [
     { base: "bg-neutral-900", hover: "#171717" },
@@ -220,11 +221,13 @@ export const Features = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="md:col-span-5"
+            className="md:col-span-5 group/domains"
+            onMouseEnter={() => setIsDomainsHovered(true)}
+            onMouseLeave={() => setIsDomainsHovered(false)}
           >
             <Card className="h-full bg-neutral-950 border-neutral-800 shadow-sm hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden">
               <CardHeader className="pt-8 px-8">
-                <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-5 text-white border border-white/10">
+                <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-5 text-white border border-white/10 group-hover/domains:scale-110 group-hover/domains:bg-white/20 transition-all duration-300">
                   <Server className="w-6 h-6" />
                 </div>
                 <CardTitle className="text-xl font-semibold tracking-tight text-white">Dominios Personalizados</CardTitle>
@@ -233,10 +236,43 @@ export const Features = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8">
-                <div className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3 backdrop-blur-sm">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-lg shadow-emerald-500/50" />
-                  <span className="font-mono text-sm text-neutral-300 truncate">tumarca.kado.com/boda</span>
-                </div>
+                <motion.div 
+                  className="bg-white/5 border rounded-xl p-4 flex items-center gap-3 backdrop-blur-sm"
+                  animate={isDomainsHovered ? {
+                    borderColor: ["rgba(255,255,255,0.1)", "rgba(16,185,129,0.4)", "rgba(255,255,255,0.1)"],
+                  } : { borderColor: "rgba(255,255,255,0.1)" }}
+                  transition={{ duration: 2, repeat: isDomainsHovered ? Infinity : 0, ease: "easeInOut" }}
+                >
+                  <motion.div 
+                    className="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0"
+                    animate={isDomainsHovered ? {
+                      scale: [1, 1.4, 1],
+                      boxShadow: [
+                        "0 0 10px rgba(16,185,129,0.5)",
+                        "0 0 20px rgba(16,185,129,0.8)",
+                        "0 0 10px rgba(16,185,129,0.5)"
+                      ]
+                    } : { scale: 1, boxShadow: "0 0 10px rgba(16,185,129,0.5)" }}
+                    transition={{ duration: 1.2, repeat: isDomainsHovered ? Infinity : 0, ease: "easeInOut" }}
+                  />
+                  <span className="font-mono text-sm text-neutral-300 truncate">
+                    <motion.span
+                      className="inline-block"
+                      animate={isDomainsHovered ? { color: "#34d399" } : { color: "#d4d4d4" }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      tumarca
+                    </motion.span>
+                    <span className="text-neutral-500">.kado.com/</span>
+                    <motion.span
+                      className="inline-block"
+                      animate={isDomainsHovered ? { color: "#34d399" } : { color: "#d4d4d4" }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                    >
+                      boda
+                    </motion.span>
+                  </span>
+                </motion.div>
               </CardContent>
             </Card>
           </motion.div>
