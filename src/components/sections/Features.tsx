@@ -1,8 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { LayoutGrid, BarChart3, Smartphone, Server, Palette, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export const Features = () => {
+  const [isAnalyticsHovered, setIsAnalyticsHovered] = useState(false);
+  
   return (
     <section id="features" className="py-24 md:py-32 relative overflow-hidden">
       {/* Subtle Background */}
@@ -85,11 +88,13 @@ export const Features = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="md:col-span-5 lg:col-span-4"
+            className="md:col-span-5 lg:col-span-4 group/analytics"
+            onMouseEnter={() => setIsAnalyticsHovered(true)}
+            onMouseLeave={() => setIsAnalyticsHovered(false)}
           >
             <Card className="h-full bg-white border-neutral-200/80 shadow-sm hover:shadow-xl hover:border-neutral-300 transition-all duration-500 rounded-2xl overflow-hidden">
               <CardHeader className="pt-8 px-8">
-                <div className="w-12 h-12 rounded-xl bg-neutral-900 flex items-center justify-center mb-5 text-white">
+                <div className="w-12 h-12 rounded-xl bg-neutral-900 flex items-center justify-center mb-5 text-white group-hover/analytics:scale-110 transition-transform duration-300">
                   <BarChart3 className="w-6 h-6" />
                 </div>
                 <CardTitle className="text-xl font-semibold tracking-tight">Analíticas en Vivo</CardTitle>
@@ -100,10 +105,18 @@ export const Features = () => {
               <CardContent className="px-8 pb-8">
                 <div className="flex items-end justify-between gap-1.5 h-20 mt-4">
                   {[40, 65, 45, 85, 55, 95, 70, 80].map((height, i) => (
-                    <div 
+                    <motion.div 
                       key={i} 
-                      className="w-full bg-neutral-200 rounded-sm overflow-hidden transition-all duration-500 hover:bg-neutral-900"
-                      style={{ height: `${height}%` }}
+                      className="w-full bg-neutral-200 rounded-sm overflow-hidden group-hover/analytics:bg-neutral-900 transition-colors duration-300"
+                      animate={isAnalyticsHovered ? {
+                        height: [`${height}%`, `${Math.min(height + 30, 100)}%`, `${height}%`],
+                      } : { height: `${height}%` }}
+                      transition={isAnalyticsHovered ? {
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.12,
+                        ease: "easeInOut",
+                      } : { duration: 0.3 }}
                     />
                   ))}
                 </div>
