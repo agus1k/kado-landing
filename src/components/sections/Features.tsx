@@ -31,7 +31,7 @@ export const Features = () => {
           >
             <span className="text-gradient">Todo lo que necesitas</span>
             <br />
-            <span className="text-neutral-400">para impresionar</span>
+            <span className="text-neutral-400">para crear experiencias digitales inolvidables.</span>
           </motion.h2>
 
           <motion.p
@@ -41,7 +41,7 @@ export const Features = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-neutral-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            El poder de un desarrollador web, la facilidad de arrastrar y soltar.
+            Kado combina el poder de un desarrollador web con la facilidad de arrastrar y soltar. Diseña sin límites técnicos, con resultados que destacan.
           </motion.p>
         </div>
 
@@ -63,7 +63,7 @@ export const Features = () => {
                 </div>
                 <CardTitle className="text-2xl md:text-3xl font-semibold tracking-tight">Editor Visual Intuitivo</CardTitle>
                 <CardDescription className="text-base md:text-lg mt-3 text-neutral-500 max-w-md">
-                  Arrastra, suelta y edita en tiempo real. Lo que ves es exactamente lo que tus invitados recibirán.
+                  Arrastra, suelta y edita en tiempo real. Lo que ves es exactamente lo que tus invitados verán.
                 </CardDescription>
               </CardHeader>
               <CardContent className="p-0 mt-auto flex-grow relative min-h-[280px]">
@@ -94,7 +94,7 @@ export const Features = () => {
                 </div>
                 <CardTitle className="text-xl font-semibold tracking-tight">Analíticas en Vivo</CardTitle>
                 <CardDescription className="text-neutral-500 mt-2">
-                  Monitorea aperturas, clics y confirmaciones al instante.
+                  Visualiza en un vistazo cuántas personas abrieron, confirmaron o interactuaron con tus invitaciones.
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8">
@@ -126,7 +126,7 @@ export const Features = () => {
                 </div>
                 <CardTitle className="text-xl font-semibold tracking-tight">100% Responsive</CardTitle>
                 <CardDescription className="text-neutral-500 mt-2">
-                  Perfecto en móvil, tablet y desktop. Sin ajustes manuales.
+                  Tus invitaciones lucen perfectas en cualquier dispositivo, sin ajustes manuales.
                 </CardDescription>
               </CardHeader>
               {/* Decorative devices */}
@@ -153,7 +153,7 @@ export const Features = () => {
                 </div>
                 <CardTitle className="text-xl font-semibold tracking-tight text-white">Dominios Personalizados</CardTitle>
                 <CardDescription className="text-neutral-400 mt-2">
-                  Mantén la identidad de tu marca en cada invitación.
+                  Mantén la identidad de tu marca con URLs únicas y memorables para cada evento.
                 </CardDescription>
               </CardHeader>
               <CardContent className="px-8 pb-8">
@@ -180,7 +180,7 @@ export const Features = () => {
                 </div>
                 <CardTitle className="text-xl font-semibold tracking-tight">Estilos Ilimitados</CardTitle>
                 <CardDescription className="mt-3 text-neutral-500">
-                  Tipografías premium, paletas personalizadas y animaciones fluidas.
+                  Explora tipografías premium, paletas personalizadas y animaciones suaves que reflejan la esencia de cada evento.
                 </CardDescription>
               </div>
               <div className="flex-1 bg-gradient-to-br from-neutral-50 to-neutral-100 relative overflow-hidden flex items-center justify-center p-6 md:p-8 min-h-[140px]">

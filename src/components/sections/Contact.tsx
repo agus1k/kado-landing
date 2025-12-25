@@ -37,10 +37,10 @@ export const Contact = () => {
             >
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-neutral-900">
                 Empieza a crear <br />
-                <span className="text-neutral-400">el futuro de los eventos.</span>
+                <span className="text-neutral-400">el futuro de los eventos con Kado.</span>
               </h2>
               <p className="text-lg text-neutral-600 leading-relaxed max-w-md">
-                Estamos abriendo el acceso a Kado gradualmente. Solicita tu invitación hoy y sé de los primeros en experimentar la plataforma.
+                Estamos abriendo el acceso de forma progresiva. Solicita tu acceso y sé parte de los profesionales que están redefiniendo cómo se invitan los momentos más importantes.
               </p>
             </motion.div>
 

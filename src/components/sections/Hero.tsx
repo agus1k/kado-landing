@@ -17,7 +17,7 @@ export const Hero = () => {
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-xs font-medium text-neutral-600 mb-8"
         >
           <Sparkles className="w-3 h-3" />
-          <span>La revolución en invitaciones digitales</span>
+          <span>La nueva era de las invitaciones digitales</span>
         </motion.div>
 
         <motion.h1
@@ -26,8 +26,8 @@ export const Hero = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-900 mb-6 max-w-4xl mx-auto"
         >
-          Crea invitaciones web <br className="hidden md:block" />
-          <span className="text-neutral-400">sin tocar código.</span>
+          Crea invitaciones web impresionantes <br className="hidden md:block" />
+          <span className="text-neutral-400">sin escribir una sola línea de código.</span>
         </motion.h1>
 
         <motion.p
@@ -36,8 +36,7 @@ export const Hero = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-lg md:text-xl text-neutral-500 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          La herramienta definitiva para fotógrafos y organizadores de eventos. 
-          Diseña, personaliza y publica invitaciones HTML impresionantes en minutos.
+          Kado es la herramienta definitiva para fotógrafos, planners y profesionales del mundo de los eventos. Diseña, personaliza y comparte invitaciones únicas en minutos, sin depender de un programador.
         </motion.p>
 
         <motion.div
@@ -48,7 +47,7 @@ export const Hero = () => {
         >
           <a href="#contact">
             <Button size="lg" className="rounded-full px-8 h-12 text-base w-full sm:w-auto shadow-lg hover:shadow-xl transition-all">
-              Empezar gratis
+              Empezar ahora
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </a>

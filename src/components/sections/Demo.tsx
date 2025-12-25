@@ -7,17 +7,17 @@ export const Demo = () => {
     {
       icon: <Zap className="w-6 h-6" />,
       title: "Velocidad Supersónica",
-      description: "De concepto a publicación en minutos. Sin tiempos de desarrollo tradicionales.",
+      description: "De la idea al envío en minutos. Sin desarrolladores, sin demoras.",
     },
     {
       icon: <Layers className="w-6 h-6" />,
       title: "Calidad de Estudio",
-      description: "Acabados profesionales automáticos. Perfecto en cualquier pantalla.",
+      description: "Cada invitación se adapta perfectamente a cualquier pantalla, con acabados de nivel estudio.",
     },
     {
       icon: <MousePointer2 className="w-6 h-6" />,
       title: "Control Absoluto",
-      description: "Gestiona RSVPs, cambios y analíticas desde un único panel.",
+      description: "Gestiona confirmaciones, actualiza contenido y visualiza analíticas desde un panel unificado.",
     }
   ];
 
@@ -48,7 +48,7 @@ export const Demo = () => {
               >
                 Potencia tu negocio <br />
                 <span className="text-neutral-500">
-                  sin límites técnicos.
+                  sin depender de terceros.
                 </span>
               </motion.h2>
               
@@ -59,7 +59,7 @@ export const Demo = () => {
                 transition={{ delay: 0.2 }}
                 className="text-neutral-400 text-lg md:text-xl leading-relaxed max-w-xl"
               >
-                Kado elimina la fricción entre tu creatividad y el resultado final. Entrega más rápido y sorprende a tus clientes.
+                Kado elimina la fricción entre tu creatividad y el resultado final. Diseña, personaliza y entrega experiencias digitales memorables que tus clientes amarán.
               </motion.p>
             </div>
 
