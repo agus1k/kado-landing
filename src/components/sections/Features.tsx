@@ -6,6 +6,16 @@ import { useState } from "react";
 export const Features = () => {
   const [isAnalyticsHovered, setIsAnalyticsHovered] = useState(false);
   const [isResponsiveHovered, setIsResponsiveHovered] = useState(false);
+  const [isStylesHovered, setIsStylesHovered] = useState(false);
+
+  const styleColors = [
+    { base: "bg-neutral-900", hover: "#171717" },
+    { base: "bg-neutral-300", hover: "#3b82f6" },
+    { base: "bg-neutral-500", hover: "#8b5cf6" },
+    { base: "bg-neutral-100", hover: "#f43f5e" },
+    { base: "bg-neutral-700", hover: "#10b981" },
+    { base: "bg-neutral-400", hover: "#f59e0b" },
+  ];
   
   return (
     <section id="features" className="py-24 md:py-32 relative overflow-hidden">
@@ -237,11 +247,13 @@ export const Features = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="md:col-span-7"
+            className="md:col-span-7 group/styles"
+            onMouseEnter={() => setIsStylesHovered(true)}
+            onMouseLeave={() => setIsStylesHovered(false)}
           >
             <Card className="h-full bg-white border-neutral-200/80 shadow-sm hover:shadow-xl hover:border-neutral-300 transition-all duration-500 flex flex-col md:flex-row overflow-hidden rounded-2xl">
               <div className="flex-1 pt-8 pb-6 md:pb-8 px-8 flex flex-col justify-center">
-                <div className="w-12 h-12 rounded-xl bg-neutral-900 flex items-center justify-center mb-5 text-white">
+                <div className="w-12 h-12 rounded-xl bg-neutral-900 flex items-center justify-center mb-5 text-white group-hover/styles:scale-110 transition-transform duration-300">
                   <Palette className="w-6 h-6" />
                 </div>
                 <CardTitle className="text-xl font-semibold tracking-tight">Estilos Ilimitados</CardTitle>
@@ -251,12 +263,26 @@ export const Features = () => {
               </div>
               <div className="flex-1 bg-gradient-to-br from-neutral-50 to-neutral-100 relative overflow-hidden flex items-center justify-center p-6 md:p-8 min-h-[140px]">
                 <div className="grid grid-cols-3 gap-3 w-full max-w-[200px]">
-                  <div className="aspect-square rounded-xl bg-neutral-900 shadow-lg" />
-                  <div className="aspect-square rounded-xl bg-neutral-300" />
-                  <div className="aspect-square rounded-xl bg-neutral-500" />
-                  <div className="aspect-square rounded-xl bg-neutral-100 border border-neutral-200" />
-                  <div className="aspect-square rounded-xl bg-neutral-700" />
-                  <div className="aspect-square rounded-xl bg-neutral-400" />
+                  {styleColors.map((color, i) => (
+                    <motion.div 
+                      key={i}
+                      className={`aspect-square rounded-xl ${color.base} ${i === 0 ? 'shadow-lg' : ''} ${i === 3 ? 'border border-neutral-200' : ''}`}
+                      animate={isStylesHovered ? {
+                        backgroundColor: color.hover,
+                        scale: [1, 1.1, 1],
+                        rotate: [0, 5, -5, 0],
+                      } : {
+                        scale: 1,
+                        rotate: 0,
+                      }}
+                      transition={{
+                        duration: 2,
+                        delay: i * 0.1,
+                        repeat: isStylesHovered ? Infinity : 0,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             </Card>
