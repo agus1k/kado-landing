@@ -1,6 +1,7 @@
 import { Zap, Layers, MousePointer2, ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import timelineVideo from "@/assets/timeline.mp4";
 
 export const Demo = () => {
   const benefits = [
@@ -22,7 +23,7 @@ export const Demo = () => {
   ];
 
   return (
-    <section id="demo" className="py-32 bg-neutral-950 text-white overflow-hidden relative">
+    <section id="demo" className="py-32 bg-black text-white overflow-hidden relative">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
           
@@ -90,17 +91,7 @@ export const Demo = () => {
               ))}
             </div>
 
-            <motion.div
-               initial={{ opacity: 0 }}
-               whileInView={{ opacity: 1 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.6 }}
-            >
-               <Button className="bg-white text-neutral-900 hover:bg-neutral-100 rounded-full px-8 h-12 text-base font-medium transition-all hover:scale-105 shadow-lg shadow-white/10">
-                 Ver todas las características
-                 <ArrowRight className="ml-2 w-4 h-4" />
-               </Button>
-            </motion.div>
+            
           </div>
 
           {/* Right Column: Visual Support */}
@@ -111,69 +102,22 @@ export const Demo = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="flex-1 w-full relative"
           >
-            {/* Main Interface Container */}
-            <div className="relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 shadow-2xl ring-1 ring-white/5 transition-transform duration-500 hover:scale-[1.02]">
-              {/* Window Controls */}
-              <div className="h-10 bg-neutral-900 border-b border-white/10 flex items-center px-4 gap-2">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-neutral-700" />
-                  <div className="w-3 h-3 rounded-full bg-neutral-700" />
-                  <div className="w-3 h-3 rounded-full bg-neutral-700" />
-                </div>
-                <div className="ml-4 px-3 py-1 rounded-md bg-white/5 text-[10px] text-neutral-500 font-mono border border-white/5">
-                  kado.app/dashboard
-                </div>
-              </div>
-
-              {/* Image Content */}
-              <div className="relative aspect-[4/3] group">
-                <img 
-                  src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop" 
-                  alt="Kado Dashboard Interface" 
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
+            {/* Video Content - sin marco, recortado */}
+            <div className="relative aspect-[4/3] bg-black rounded-2xl">
+              <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                <video
+                  src={timelineVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute left-1/2 top-0 w-[120%] h-full object-cover object-left rounded-2xl"
+                  style={{ transform: 'translateX(-55%)', background: '#000' }}
                 />
-                
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent" />
-
-                {/* Floating Stats Panel */}
-                <motion.div 
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  className="absolute bottom-6 left-6 right-6 bg-neutral-900/90 backdrop-blur-xl p-5 rounded-xl border border-white/10 shadow-2xl"
-                >
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-medium text-neutral-400">Rendimiento en tiempo real</span>
-                    <span className="text-xs font-medium text-emerald-400 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-500/50" />
-                      Activo
-                    </span>
-                  </div>
-                  <div className="flex items-end gap-1 h-14">
-                    {[30, 45, 35, 60, 50, 75, 65, 85, 70, 90, 60, 80].map((h, i) => (
-                      <div 
-                        key={i} 
-                        className="flex-1 bg-neutral-700 rounded-sm hover:bg-white transition-colors duration-300"
-                        style={{ height: `${h}%` }}
-                      />
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Floating Badge */}
-                <motion.div 
-                  initial={{ x: 20, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
-                  className="absolute top-6 right-6 bg-white text-neutral-900 px-4 py-2.5 rounded-xl shadow-xl font-medium text-sm flex items-center gap-2"
-                >
-                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
-                  Invitación Publicada
-                </motion.div>
+                {/* Overlay Gradient para integración natural */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent pointer-events-none rounded-2xl" />
               </div>
             </div>
-
             {/* Decorative Glow */}
             <div className="absolute -inset-4 bg-gradient-to-r from-neutral-800/50 to-neutral-700/30 rounded-[2rem] blur-3xl -z-10 opacity-50" />
           </motion.div>
