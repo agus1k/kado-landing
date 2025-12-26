@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { LayoutGrid, BarChart3, Smartphone, Server, Palette, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import editorVideo from "@/assets/video.webm";
 
 export const Features = () => {
   const [isAnalyticsHovered, setIsAnalyticsHovered] = useState(false);
@@ -81,14 +82,36 @@ export const Features = () => {
                   Arrastra, suelta y edita en tiempo real. Lo que ves es exactamente lo que tus invitados verán.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-0 mt-auto flex-grow relative min-h-[280px]">
-                <div className="absolute inset-0 bg-gradient-to-br from-neutral-100 to-neutral-50 overflow-hidden">
-                   <img 
-                    src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Editor Interface" 
-                    className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 origin-top"
-                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
+              <CardContent className="p-6 md:p-8 mt-auto flex-grow relative">
+                {/* Video Container with Premium SaaS styling */}
+                <div className="relative w-full h-full min-h-[220px] md:min-h-[260px] rounded-xl overflow-hidden bg-neutral-950 shadow-2xl ring-1 ring-white/10">
+                  {/* Subtle gradient overlay for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent z-10 pointer-events-none" />
+                  
+                  {/* Browser-like top bar for premium feel */}
+                  <div className="absolute top-0 left-0 right-0 h-7 bg-neutral-900/90 backdrop-blur-sm flex items-center px-3 gap-1.5 z-20">
+                    <div className="w-2 h-2 rounded-full bg-red-500/80" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
+                    <div className="w-2 h-2 rounded-full bg-green-500/80" />
+                    <div className="flex-1 mx-3">
+                      <div className="h-3.5 w-28 bg-neutral-800 rounded-md" />
+                    </div>
+                  </div>
+                  
+                  {/* Video element - centered crop */}
+                  <div className="absolute inset-0 pt-7 overflow-hidden">
+                    <video 
+                      src={editorVideo}
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                      className="w-[140%] h-[140%] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%]"
+                    />
+                  </div>
+                  
+                  {/* Bottom fade for seamless integration */}
+                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-neutral-950 to-transparent z-10 pointer-events-none" />
                 </div>
               </CardContent>
             </Card>
