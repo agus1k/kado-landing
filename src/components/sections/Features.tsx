@@ -84,12 +84,11 @@ export const Features = () => {
               </CardHeader>
               <CardContent className="p-6 md:p-8 mt-auto flex-grow relative">
                 {/* Video Container with Premium SaaS styling */}
-                <div className="relative w-full h-full min-h-[220px] md:min-h-[260px] rounded-xl overflow-hidden bg-neutral-950 shadow-2xl ring-1 ring-white/10">
+                <div className="relative w-full h-full min-h-[220px] md:min-h-[260px] rounded-2xl overflow-hidden bg-neutral-950 shadow-2xl ring-1 ring-white/10">
                   {/* Subtle gradient overlay for depth */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent z-10 pointer-events-none" />
-                  
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent z-10 pointer-events-none rounded-2xl" />
                   {/* Browser-like top bar for premium feel */}
-                  <div className="absolute top-0 left-0 right-0 h-7 bg-neutral-900/90 backdrop-blur-sm flex items-center px-3 gap-1.5 z-20">
+                  <div className="absolute top-0 left-0 right-0 h-7 bg-neutral-900/90 backdrop-blur-sm flex items-center px-3 gap-1.5 z-20 rounded-t-2xl">
                     <div className="w-2 h-2 rounded-full bg-red-500/80" />
                     <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
                     <div className="w-2 h-2 rounded-full bg-green-500/80" />
@@ -97,21 +96,18 @@ export const Features = () => {
                       <div className="h-3.5 w-28 bg-neutral-800 rounded-md" />
                     </div>
                   </div>
-                  
-                  {/* Video element - centered crop */}
-                  <div className="absolute inset-0 pt-7 overflow-hidden">
-                    <video 
-                      src={editorVideo}
-                      autoPlay 
-                      loop 
-                      muted 
-                      playsInline
-                      className="w-[140%] h-[140%] object-cover absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%]"
-                    />
-                  </div>
-                  
+                  {/* Video element - centered crop, fully rounded */}
+                  <video 
+                    src={editorVideo}
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover rounded-2xl"
+                    style={{ top: '1.75rem' }} // pt-7 equivalente
+                  />
                   {/* Bottom fade for seamless integration */}
-                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-neutral-950 to-transparent z-10 pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-neutral-950 to-transparent z-10 pointer-events-none rounded-b-2xl" />
                 </div>
               </CardContent>
             </Card>
