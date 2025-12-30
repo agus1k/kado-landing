@@ -1,6 +1,5 @@
 import { Zap, Layers, MousePointer2, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import timelineVideo from "@/assets/timeline.mp4";
 
 export const Demo = () => {
