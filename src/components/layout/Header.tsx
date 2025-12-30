@@ -16,9 +16,9 @@ export const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: "Características", href: "#features" },
-    { name: "Demo", href: "#demo" },
-    { name: "Testimonios", href: "#trust" },
+    { name: "Producto", href: "#features" },
+    { name: "Solución", href: "#demo" },
+    { name: "Casos de Éxito", href: "#trust" },
   ];
 
   return (

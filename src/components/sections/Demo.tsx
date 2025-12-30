@@ -113,8 +113,8 @@ export const Demo = () => {
                   className="absolute left-1/2 top-0 w-[120%] h-full object-cover object-left rounded-2xl"
                   style={{ transform: 'translateX(-55%)', background: '#000' }}
                 />
-                {/* Overlay Gradient para integración natural */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent pointer-events-none rounded-2xl" />
+                {/* Overlay Gradient sutil */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none rounded-2xl" />
               </div>
             </div>
             {/* Decorative Glow */}
