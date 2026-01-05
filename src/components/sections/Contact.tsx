@@ -2,22 +2,102 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
-import { CheckCircle2, Loader2, ArrowRight, Mail } from "lucide-react";
+import { Turnstile } from "@/components/ui/Turnstile";
+import { useState, useCallback } from "react";
+import { CheckCircle2, Loader2, ArrowRight, Mail, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { WORKER_URL } from "@/lib/config";
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: string;
+  message: string;
+}
 
 export const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    role: '',
+    message: '',
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+    setError(null);
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
+
+  const handleTurnstileError = useCallback(() => {
+    setError('Error al verificar. Por favor, recarga la página.');
+    setTurnstileToken(null);
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+
+    // Verificar que Turnstile esté completado
+    if (!turnstileToken) {
+      setError('Por favor, completa la verificación de seguridad.');
+      return;
+    }
+
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const response = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Error al enviar el formulario');
+      }
+
       setIsSuccess(true);
-    }, 1500);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        role: '',
+        message: '',
+      });
+      setTurnstileToken(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error al enviar el formulario. Intenta de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const resetForm = () => {
+    setIsSuccess(false);
+    setError(null);
+    setTurnstileToken(null);
   };
 
   return (
@@ -85,7 +165,7 @@ export const Contact = () => {
                     Gracias por tu interés. Revisa tu correo, te contactaremos muy pronto.
                   </p>
                 </div>
-                <Button variant="outline" onClick={() => setIsSuccess(false)} className="rounded-full mt-4">
+                <Button variant="outline" onClick={resetForm} className="rounded-full mt-4">
                   Volver al formulario
                 </Button>
               </div>
@@ -95,17 +175,39 @@ export const Contact = () => {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="firstName" className="text-xs font-semibold uppercase tracking-wider text-neutral-500">Nombre</Label>
-                      <Input id="firstName" placeholder="Juan" required className="h-12 bg-neutral-50 border-transparent focus:bg-white focus:border-neutral-200 transition-all rounded-xl" />
+                      <Input 
+                        id="firstName" 
+                        placeholder="Juan" 
+                        required 
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        className="h-12 bg-neutral-50 border-transparent focus:bg-white focus:border-neutral-200 transition-all rounded-xl" 
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="lastName" className="text-xs font-semibold uppercase tracking-wider text-neutral-500">Apellido</Label>
-                      <Input id="lastName" placeholder="Pérez" required className="h-12 bg-neutral-50 border-transparent focus:bg-white focus:border-neutral-200 transition-all rounded-xl" />
+                      <Input 
+                        id="lastName" 
+                        placeholder="Pérez" 
+                        required 
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        className="h-12 bg-neutral-50 border-transparent focus:bg-white focus:border-neutral-200 transition-all rounded-xl" 
+                      />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-xs font-semibold uppercase tracking-wider text-neutral-500">Email Profesional</Label>
-                    <Input id="email" type="email" placeholder="juan@empresa.com" required className="h-12 bg-neutral-50 border-transparent focus:bg-white focus:border-neutral-200 transition-all rounded-xl" />
+                    <Input 
+                      id="email" 
+                      type="email" 
+                      placeholder="juan@empresa.com" 
+                      required 
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="h-12 bg-neutral-50 border-transparent focus:bg-white focus:border-neutral-200 transition-all rounded-xl" 
+                    />
                   </div>
 
                   <div className="space-y-2">
@@ -113,7 +215,8 @@ export const Contact = () => {
                     <div className="relative">
                       <select 
                         id="role" 
-                        defaultValue=""
+                        value={formData.role}
+                        onChange={handleInputChange}
                         className="flex h-12 w-full items-center justify-between rounded-xl border border-transparent bg-neutral-50 px-3 py-2 text-sm placeholder:text-muted-foreground focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900/5 focus:border-neutral-200 disabled:cursor-not-allowed disabled:opacity-50 appearance-none"
                       >
                         <option value="" disabled>Selecciona tu perfil...</option>
@@ -130,11 +233,39 @@ export const Contact = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-xs font-semibold uppercase tracking-wider text-neutral-500">Mensaje (Opcional)</Label>
-                    <Textarea id="message" placeholder="¿Qué tipo de eventos organizas?" className="min-h-[100px] bg-neutral-50 border-transparent focus:bg-white focus:border-neutral-200 transition-all rounded-xl resize-none" />
+                    <Textarea 
+                      id="message" 
+                      placeholder="¿Qué tipo de eventos organizas?" 
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="min-h-[100px] bg-neutral-50 border-transparent focus:bg-white focus:border-neutral-200 transition-all rounded-xl resize-none" 
+                    />
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full h-12 rounded-full text-base font-medium bg-neutral-900 hover:bg-neutral-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5" disabled={isSubmitting}>
+                {/* Turnstile Widget */}
+                <div className="flex justify-center">
+                  <Turnstile 
+                    onVerify={handleTurnstileVerify}
+                    onExpire={handleTurnstileExpire}
+                    onError={handleTurnstileError}
+                    theme="light"
+                  />
+                </div>
+
+                {/* Error Message */}
+                {error && (
+                  <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 text-red-600 text-sm">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                <Button 
+                  type="submit" 
+                  className="w-full h-12 rounded-full text-base font-medium bg-neutral-900 hover:bg-neutral-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5" 
+                  disabled={isSubmitting || !turnstileToken}
+                >
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />

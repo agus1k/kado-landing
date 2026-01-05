@@ -17,3 +17,9 @@
   command = "vite"
   port = 3000
   publish = "dist"
+
+# SPA redirect rule - routes all requests to index.html for react-router
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

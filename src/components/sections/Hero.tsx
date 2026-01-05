@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Play } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import heroVideo from "@/assets/hero.webm";
 
 export const Hero = () => {
   return (
@@ -51,11 +52,6 @@ export const Hero = () => {
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </a>
-          <a href="#demo">
-            <Button variant="outline" size="lg" className="rounded-full px-8 h-12 text-base w-full sm:w-auto bg-white/50 backdrop-blur-sm">
-              Ver demo
-            </Button>
-          </a>
         </motion.div>
 
         {/* Hero Video Section - Grande y Demostrativo */}
@@ -65,35 +61,17 @@ export const Hero = () => {
           transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
           className="relative max-w-6xl mx-auto"
         >
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-neutral-200 bg-neutral-900 aspect-video group cursor-pointer ring-1 ring-neutral-900/5">
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
-            
-            {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center z-20 group-hover:scale-105 transition-transform duration-300">
-              <div className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-2xl hover:bg-white/20 transition-colors">
-                <Play className="w-10 h-10 text-white fill-white ml-2" />
-              </div>
-            </div>
-
-            {/* Video Thumbnail / Placeholder */}
-            <img 
-              src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2670&auto=format&fit=crop" 
-              alt="Kado Editor Demo" 
-              className="w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-opacity duration-500"
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-neutral-200 bg-neutral-900 aspect-video ring-1 ring-neutral-900/5">
+            {/* Hero Video - Autoplay Loop */}
+            <video 
+              src={heroVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
             />
-            
-            {/* UI Browser Bar Simulation */}
-            <div className="absolute top-0 left-0 right-0 h-12 bg-black/20 backdrop-blur-md flex items-center px-4 gap-2 z-20 border-b border-white/10">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              </div>
-              <div className="mx-auto w-1/3 h-6 rounded-md bg-white/10 flex items-center justify-center text-[10px] text-white/50 font-mono">
-                kado.app/editor
-              </div>
-            </div>
+
           </div>
           
           {/* Decorative Glow behind video */}

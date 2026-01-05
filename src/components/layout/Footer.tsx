@@ -1,5 +1,6 @@
 import { Instagram, Twitter, Linkedin, MessageCircle, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -54,8 +55,8 @@ export const Footer = () => {
             <div className="space-y-4">
               <h4 className="font-semibold text-neutral-200">Legal</h4>
               <ul className="space-y-3 text-neutral-400">
-                <li><a href="#" className="hover:text-white transition-colors">Términos y Condiciones</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Política de Privacidad</a></li>
+                <li><Link to="/terms" className="hover:text-white transition-colors">Términos y Condiciones</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Política de Privacidad</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Cookies</a></li>
               </ul>
             </div>
