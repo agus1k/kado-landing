@@ -46,7 +46,7 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-500">
-          <span>Copyright © 2025 Kado Inc.</span>
+          <span>Copyright © 2026 Kado Inc.</span>
           
           <a 
             href="https://aivange.com" 
